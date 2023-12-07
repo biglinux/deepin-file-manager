@@ -23,32 +23,19 @@ source=("https://github.com/linuxdeepin/dde-file-manager/archive/$pkgver/$pkgnam
 md5sums=('SKIP' 'SKIP')
 
 prepare() {
-    cd "$srcdir/$pkgname-$pkgver"
+    # Adjust the directory name as needed
+    cd "$srcdir/dde-file-manager-$pkgver"
     patch -p1 -i "$srcdir/dde-file-manager_6.0.37_disable_automount.patch"
 }
 
 build() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir/dde-file-manager-$pkgver"
   cmake -GNinja -B build -S . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_SYSCONFDIR=/etc
   cd build
   ninja
 }
 
 package() {
-    cd "$srcdir/$pkgname-$pkgver/build"
+    cd "$srcdir/dde-file-manager-$pkgver/build"
     DESTDIR="$pkgdir" ninja install
-
-    # Copy additional files if needed
-    if [ -d "${pkgdir}/usr" ]; then
-        cp -r "${pkgdir}/usr" "${pkgdir}/"
-    fi
-
-    if [ -d "${pkgdir}/etc" ]; then
-        cp -r "${pkgdir}/etc" "${pkgdir}/"
-    fi
-
-    if [ -d "${pkgdir}/opt" ]; then
-        cp -r "${pkgdir}/opt" "${pkgdir}/"
-    fi
 }
-
