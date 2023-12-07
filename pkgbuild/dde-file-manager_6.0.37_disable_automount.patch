@@ -1,0 +1,13 @@
+diff --git a/src/dfm-base/base/configs/settingbackend.cpp b/src/dfm-base/base/configs/settingbackend.cpp
+index 06b07f01a..a1ab73389 100644
+--- a/src/dfm-base/base/configs/settingbackend.cpp
++++ b/src/dfm-base/base/configs/settingbackend.cpp
+@@ -363,7 +363,7 @@ void SettingBackend::initAdvanceSettingConfig()
+                    { { "key", "00_auto_mount" },
+                      { "text", tr("Auto mount") },
+                      { "type", "mountCheckBox" },
+-                     { "default", true } });
++                     { "default", false } });
+     ins->addConfig(LV2_GROUP_MOUNT ".01_auto_mount_and_open",
+                    { { "key", "01_auto_mount_and_open" },
+                      { "text", tr("Open after auto mount") },
